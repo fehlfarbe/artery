@@ -3,11 +3,12 @@
 	<service type="artery.application.CaService">
 		<listener port="2001" />
 	</service>
-	<service type="artery.application.ExampleService">
+	<service type="artery.application.CustomSenderService">
 		<listener port="4711" />
-		<filters>
-			<name pattern="flow0\.1.*" />
-			<penetration rate="0.1" />
-		</filters>
+		<filters><name pattern="car0" /></filters>
+	</service>
+	<service type="artery.application.CustomReceiverService">
+		<listener port="4711" />
+		<filters><name pattern="car0" match="inverse" /></filters>
 	</service>
 </services>

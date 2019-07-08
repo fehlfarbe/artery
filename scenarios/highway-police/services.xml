@@ -7,5 +7,5 @@
     <service type="ClearLaneService">
         <listener port="8001" />
         <filters><name pattern="police0" match="inverse" /></filters>
-    </service>
+    </service>h
 </services>

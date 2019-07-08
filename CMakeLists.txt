@@ -8,6 +8,7 @@ if(POLICY CMP0078)
 endif()
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 set(CMAKE_CXX_STANDARD 11)
+set(MAKE_ARGUMENTS WITH_OSGEARTH=OFF)
 enable_testing()
 
 find_package(OmnetPP 5.4 REQUIRED)
