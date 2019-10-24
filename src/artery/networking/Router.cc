@@ -108,6 +108,8 @@ void Router::initializeManagementInformationBase(vanetza::geonet::ManagementInfo
     mib.itsGnIsMobile = par("isMobile");
     mib.itsGnSecurity = (mSecurityEntity != nullptr);
     mib.vanetzaDeferInitialBeacon = par("deferInitialBeacon");
+    mib.itsGnAreaForwardingAlgorithm = vanetza::geonet::BroadcastForwarding::CBF;
+    mib.itsGnNonAreaForwardingAlgorithm = vanetza::geonet::UnicastForwarding::NN;
 }
 
 void Router::request(const vanetza::btp::DataRequestB& request, std::unique_ptr<vanetza::DownPacket> packet)

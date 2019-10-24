@@ -1,0 +1,12 @@
+add_opp_run(neural_router CONFIG omnetpp.ini)
+#add_opp_test(neural_router SUFFIX inet CONFIG inet SIMTIME_LIMIT 20s)
+#add_opp_test(neural_router SUFFIX security CONFIG inet_security SIMTIME_LIMIT 20s)
+#add_opp_test(neural_router SUFFIX inet-mco CONFIG inet_mco SIMTIME_LIMIT 20s)
+#add_opp_test(neural_router SUFFIX inet-mixed-vehicles CONFIG inet_multiple_vehicle_types SIMTIME_LIMIT 20s)
+#add_opp_test(neural_router SUFFIX inet-rsu CONFIG inet_rsu SIMTIME_LIMIT 20s)
+add_opp_test(neural_router SUFFIX veins CONFIG veins SIMTIME_LIMIT 20s)
+#add_opp_test(neural_router SUFFIX veins-rsu CONFIG veins_rsu SIMTIME_LIMIT 20s)
+
+#if(WITH_ENVMOD)
+#    add_opp_test(neural_router SUFFIX envmod CONFIG envmod SIMTIME_LIMIT 20s)
+#endif()

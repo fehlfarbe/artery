@@ -15,7 +15,7 @@
 	branch = artery-integration
 [submodule "extern/vanetza"]
 	path = extern/vanetza
-	url = https://github.com/riebl/vanetza.git
+	url = https://github.com/fehlfarbe/vanetza.git
 [submodule "extern/veins"]
 	path = extern/veins
-	url = https://github.com/sommer/veins.git
+	url = https://github.com/fehlfarbe/veins.git
