@@ -31,6 +31,7 @@ namespace artery
         const VehicleDataProvider* mVehicleDataProvider;
 //        ssize_t mPacketCount = 0;
         std::vector<ssize_t> mPackets;
+        size_t mDuplicatePackets = 0;
     };
 
 } // namespace artery

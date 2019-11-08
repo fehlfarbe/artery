@@ -109,6 +109,7 @@ void Router::initializeManagementInformationBase(vanetza::geonet::ManagementInfo
     mib.itsGnSecurity = (mSecurityEntity != nullptr);
     mib.vanetzaDeferInitialBeacon = par("deferInitialBeacon");
     mib.itsGnAreaForwardingAlgorithm = vanetza::geonet::BroadcastForwarding::CBF;
+//    mib.itsGnNonAreaForwardingAlgorithm = vanetza::geonet::UnicastForwarding::NN;
     mib.itsGnNonAreaForwardingAlgorithm = vanetza::geonet::UnicastForwarding::NN;
 }
 

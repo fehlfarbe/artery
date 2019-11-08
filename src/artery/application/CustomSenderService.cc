@@ -94,11 +94,10 @@ namespace artery
             btp::DataRequestB req;
             req.destination_port = host_cast<CustomSenderService::port_type>(getPortNumber());
             req.gn.transport_type = geonet::TransportType::GBC;
-            req.gn.traffic_class.tc_id(static_cast<unsigned>(dcc::Profile::DP3));
+            req.gn.traffic_class.tc_id(static_cast<unsigned>(dcc::Profile::DP1));
             req.gn.communication_profile = geonet::CommunicationProfile::ITS_G5;
-
-            req.gn.maximum_hop_limit = 10;
-            req.gn.maximum_lifetime = geonet::Lifetime{geonet::Lifetime::Base::One_Second, 20};
+            req.gn.maximum_hop_limit = 20;
+            req.gn.maximum_lifetime = geonet::Lifetime{geonet::Lifetime::Base::One_Second, 60};
 
             using vanetza::units::si::meters;
             using vanetza::units::degree;
@@ -108,7 +107,6 @@ namespace artery
             boost::get<vanetza::geonet::Circle>(area.shape).r = 100.0 * vanetza::units::si::meter;
             area.position.latitude = vanetza::units::GeoAngle{49.572717 * degree};
             area.position.longitude = vanetza::units::GeoAngle{11.030770 * degree};
-//            area.angle = vanetza::units::Angle{0.0 * vanetza::units::degrees};
             req.gn.destination = area;
 
 

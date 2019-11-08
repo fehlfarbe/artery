@@ -21,6 +21,8 @@
 #include <vanetza/geonet/interface.hpp>
 #include <boost/units/systems/si/prefixes.hpp>
 #include <veins/modules/mobility/traci/TraCIScenarioManager.h>
+#include <GeographicLib/Geodesic.hpp>
+
 
 #include <algorithm>
 
@@ -50,15 +52,26 @@ namespace artery
             EV_INFO << "packet indication\n";
         }
 
-        std::cout << "SUCCESS!: ";
-        std::cout << mVehicleDataProvider->station_id() << " got packet at "
-                  << mVehicleDataProvider->latitude().value() << ", " << mVehicleDataProvider->longitude().value()
-                  << "from " << ind.source_position.latitude.value() << ", " << ind.source_position.longitude.value()
-                  << std::endl;
+        using namespace GeographicLib;
+        const Geodesic& geod = Geodesic::WGS84();
+        double distance_m = 0.0;
+        geod.Inverse(mVehicleDataProvider->latitude() / units::degree, mVehicleDataProvider->longitude() / units::degree,
+                     units::GeoAngle::from_value(ind.source_position.latitude.value() / 10e6) / units::degree, units::GeoAngle::from_value(ind.source_position.longitude.value() / 10e6) / units::degree,
+                     distance_m);
+        auto distance = distance_m * units::si::meters;
         ssize_t packet_number = std::stoi(packet->getName());
+
         if(std::find(mPackets.begin(), mPackets.end(), packet_number) != mPackets.end()) {
-            std::cout << "Packet already known" << std::endl;
+//            std::cout << "Packet already known" << std::endl;
+            mDuplicatePackets++;
         } else {
+            std::cout << "SUCCESS!: ";
+            std::cout << mVehicleDataProvider->station_id() << " got packet " << packet_number << " at "
+                      << mVehicleDataProvider->latitude().value() << ", " << mVehicleDataProvider->longitude().value()
+                      << "from " << ind.source_position.latitude.value() / 10e6 << ", " << ind.source_position.longitude.value() / 10e6
+                      << " distance: " << distance.value() << "m"
+                      << std::endl;
+
             mPackets.push_back(packet_number);
         }
 
